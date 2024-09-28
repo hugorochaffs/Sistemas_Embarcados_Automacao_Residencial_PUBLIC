@@ -1,0 +1,191 @@
+menu "Configuração do Wifi"
+
+    config WIFI_CONFIG_MANUAL
+        bool "Ativar configuracao manual do wifi"
+        default 0
+        help
+            Ativa ou desativa a config manual do wifi.
+
+    config ESP_WIFI_SSID
+        string "WiFi SSID"
+        default "ssid"
+        help
+            Nome da rede WiFi.
+
+    config ESP_WIFI_PASSWORD
+        string "Senha do Wifi"
+        default "minha_senha"
+        help
+            Senha do WiFi (WPA ou WPA2).
+
+    config ESP_MAXIMUM_RETRY
+        int "Número máximo de tentativas de conexão"
+        default 5
+        help
+            Configure o valor máximo de tentativas de conexão.
+endmenu
+
+menu "Configuração do MQTT THINGSBOARD"
+    config ESP_MQTT_BROKER_THINGSBOARD
+        string "MQTT Broker"
+        default "thingsboard.lappis.rocks"
+        help
+            Endereço do Broker MQTT do ThingsBoard.
+
+    config ESP_MQTT_PORT_THINGSBOARD
+        int "MQTT Port"
+        default 1883
+        help
+            Porta do Broker MQTT do ThingsBoard.
+
+    config ESP_MQTT_TOKEN_THINGSBOARD
+        string "Token gerado pelo ThingsBoard"
+        default ""
+        help
+            Configure o token gerado pelo ThingsBoard.
+endmenu
+
+menu "Configuração do MQTT COMUNICAÇÃO ENTRE PLACAS"
+    config ESP_MQTT_BROKER
+        string "MQTT Broker"
+        default "endereco"
+        help
+            Endereço do Broker MQTT.
+
+    config ESP_MQTT_PORT
+        int "MQTT Port"
+        default 1883
+        help
+            Porta do Broker MQTT.
+
+    config ESP_MQTT_TOKEN
+        string "Token"
+        default ""
+        help
+            Configure o token para comunicação entre placas.
+endmenu
+
+menu "Configuração de Módulos"
+    menu "Prevenção de Desastres"
+        config USE_GAS_SENSOR
+            bool "Ativar sensor de vazamento de gás"
+            default 0
+            help
+                Ativa ou desativa o uso do sensor de gás.
+
+        config GAS_SENSOR_PIN
+            int "Pino para sinal do sensor de gás"
+            default 34
+            help
+                Pino para o sinal  do sensor de gás.
+
+        config USE_FIRE_SENSOR
+            bool "Ativar sensor de detecção de fogo"
+            default 0
+            help
+                Ativa ou desativa o uso do sensor de detecção de fogo.
+
+        config FIRE_SENSOR_PIN
+            int "Pino para sinal do sensor de fogo"
+            default 33
+            help
+                Pino para o sinal do sensor de fogo.
+    endmenu
+
+    menu "Clima"
+        config USE_LUM_TEMP_HUM_SENSOR
+            bool "Ativar sensor de temp/humid"
+            default 0
+            help
+                Ativa ou desativa o uso do sensor de temp/hum.
+
+        config TEMPERATURE_HUMIDITY_SENSOR_PIN
+            int "Pino para sinal do sensor DHT11"
+            default 22
+            help
+                Pino para o sinal do sensor de temp/umid.
+    endmenu
+
+    menu "Relays"
+        config USE_RELAYS
+            bool "Ativar relays"
+            default 0
+            help
+                Ativa ou desativa o uso dos relays para controlar a energia da casa.
+
+        config PLACA_RELAYS_BOTAO
+            int "Pino para botão da placa RELE"
+            default 0
+            help
+                Pino do botão na placa RELAYS.
+                
+        config PLACA_RELAYS_PINO_LAMPADA
+            int "Pino para lampada da placa RELE"
+            default 25
+            help
+                Pino do botão na placa RELAYS.
+
+        config PLACA_RELAYS_PINO_GERAL
+            int "Pino para geral da placa RELE"
+            default 26
+            help
+                Pino do botão na placa RELAYS.
+    endmenu
+
+    menu "Placa OLED"
+        config USE_OLED
+            bool "Usar placa OLED"
+            default 0
+            help
+                Ativa ou desativa o uso da placa OLED.
+
+        config PLACA_OLED_PINO_BOTAO
+            int "Pino para botão da placa OLED"
+            default 0
+            help
+                Pino do botão na placa OLED.
+
+        config PLACA_OLED_LED
+            int "Pino para LED PWM na placa OLED"
+            default 2
+            help
+                Pino do LED PWM na placa OLED.
+
+        config PLACA_OLED_BUZZER
+            int "Pino para buzzer da placa OLED"
+            default 4
+            help
+                Pino do buzzer na placa OLED.
+        config PORCENTAGEM_LUM_LIGA_LAMP
+            int "valor inteiro para a porcentagem lig lamp"
+            default 55
+            help
+                Valor p ligar lampada.
+
+        choice MY_ADC_CHANNEL
+            prompt "Select ADC1 Channel"
+            default MY_ADC_CHANNEL_6
+        
+        config MY_ADC_CHANNEL_0
+            bool "ADC1_CHANNEL_0"
+        config MY_ADC_CHANNEL_1
+            bool "ADC1_CHANNEL_1"
+        config MY_ADC_CHANNEL_2
+            bool "ADC1_CHANNEL_2"
+        config MY_ADC_CHANNEL_3
+            bool "ADC1_CHANNEL_3"
+        config MY_ADC_CHANNEL_4
+            bool "ADC1_CHANNEL_4"
+        config MY_ADC_CHANNEL_5
+            bool "ADC1_CHANNEL_5"
+        config MY_ADC_CHANNEL_6
+            bool "ADC1_CHANNEL_6"
+        config MY_ADC_CHANNEL_7
+            bool "ADC1_CHANNEL_7"
+        config MY_ADC_CHANNEL_8
+            bool "ADC1_CHANNEL_8"
+        config MY_ADC_CHANNEL_9
+            bool "ADC1_CHANNEL_9"
+        endchoice
+    endmenu
+endmenu
